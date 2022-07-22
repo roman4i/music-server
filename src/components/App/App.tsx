@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import Head from '../Head/Head';
 
 function App() {
   return (
-    <div>My app</div>
+    <Head />
   );
 }
 
