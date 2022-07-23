@@ -5,7 +5,6 @@ const SongsData = () => {
     return(
         <div className='songsDataBox'>
             There are --- songs on your server. Enjoy
-            <hr />
         </div>
     )
 }
