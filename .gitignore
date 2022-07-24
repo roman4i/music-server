@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# music folder and music list
+/server/music
+/server/store/music-list.txt
