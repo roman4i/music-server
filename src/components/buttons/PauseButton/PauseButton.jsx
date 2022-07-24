@@ -1,12 +1,12 @@
 import React from "react";
 
-import './pause-button-style.css';
+import '../buttons-style.css';
 import playPicture from '../../../icons/pause.png';
 
 // icon author - Bingge Liu
 const PauseButton = () => {
     return(
-        <img className='playBtn' src={playPicture} alt="Play" />
+        <img className='pauseBtn' src={playPicture} alt="Play" />
     )
 }
 

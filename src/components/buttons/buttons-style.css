@@ -1,9 +1,37 @@
+.playBtn {
+    width: 40px;
+    height: auto;
+}
+
+.pauseBtn {
+    width: 40px;
+    height: auto;
+}
+
 .muteBtn {
-    width: 20px;
+    width: 40px;
     height: auto;
 }
 
 .volumeBtn {
-    width: 20px;
+    width: 40px;
     height: auto;
+}
+
+@media only screen and (min-width: 768px){
+    .playBtn {
+        width: 30px;
+    }
+    
+    .pauseBtn {
+        width: 30px;
+    }
+    
+    .muteBtn {
+        width: 30px;
+    }
+    
+    .volumeBtn {
+        width: 30px;
+    }
 }
