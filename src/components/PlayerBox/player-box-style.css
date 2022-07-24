@@ -3,6 +3,7 @@
     border-top: 1px solid lightgray;
     width: 100%;
     padding: 15px;
+    padding-top: 5px;
     bottom: 0;
     box-sizing: border-box
 }
@@ -25,5 +26,6 @@
         bottom: 10px;
         margin-left: -250px;
         border: 1px solid lightgray;
+        padding-top: 15px;
     }
 }
