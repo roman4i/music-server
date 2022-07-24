@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './play-button-style.css';
+import '../buttons-style.css';
 import playPicture from '../../../icons/play.png';
 
 // icon author - Bingge Liu
