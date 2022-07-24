@@ -1,6 +1,5 @@
 .header {
     font-size: xx-large;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 8px auto 10px auto;
     width: max-content;
 }
