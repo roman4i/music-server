@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const checkMusic = require('./utils/checkMusicFolder');
 const getMusicList = require('./requests/getMusicList');
 const getSong = require("./requests/getSong");
@@ -13,6 +14,7 @@ const project_dir = 'C:\\Users\\Роман\\Documents\\projects\\music-server'
 checkMusic();
 
 app.use(express.static(path.join(project_dir, 'build')));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(project_dir, 'build', 'index.html'));
