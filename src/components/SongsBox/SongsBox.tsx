@@ -11,11 +11,16 @@ type props = {
 }
 
 const SongsBox = ({ songs }:props) => {
-    const songsArray = songs.map(val => {
-        return(
-            <SongBox songName={val.name} link={val.link} id={val.id} />
-        )
-    })
+    let songsArray:JSX.Element[]|string = [];
+    if(songs.length > 0) {
+        songsArray = songs.map((val, ind) => {
+            return(
+                <SongBox songName={val.name} link={val.link} id={val.id} key={ind} />
+            )
+        })
+    } else {
+        songsArray = 'No music to display'
+    }
 
     return(
         <div className='songsBox'>
