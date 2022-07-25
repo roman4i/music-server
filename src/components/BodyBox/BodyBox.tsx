@@ -3,12 +3,20 @@ import SongsData from '../SongsData/SongsData';
 import SongsBox from '../SongsBox/SongsBox';
 import './body-box-style.css';
 
-const BodyBox = () => {
+type props = {
+    songsList: {
+        name: string,
+        link: string,
+        id:number,
+    }[]
+}
+
+const BodyBox = ({ songsList }:props) => {
     return(
         <div className='bodyBox'>
-            <SongsData />
+            <SongsData count={ songsList.length } />
             <hr />
-            <SongsBox />
+            <SongsBox songs={ songsList } />
         </div>
     )
 }
