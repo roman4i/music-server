@@ -5,6 +5,7 @@ import PlayerBox from '../PlayerBox/PlayerBox';
 import Context from '../../store/context';
 import Player from '../Player/Player';
 import { plData } from '../../store/types';
+import serverAdrrList from '../../store/server-adress';
 
 const synthData = [{"name":"Something too long for mobile display","link":"Alesso - Falling","id":0},{"name":"Kokab - Got U (Ready or Not)","link":"Kokab - Got U (Ready or Not).mp3","id":1},{"name":"Vacuum - I Breathe","link":"Vacuum - I Breathe.mp3","id":2}]
 
@@ -28,16 +29,17 @@ function App() {
         playing: playing,
         setPlaying,
     },
-    songsList:songsList
+    songsList:songsList,
+    adress: serverAdrrList.current
   }
 
   useEffect(() => {
-    fetch('http://192.168.1.155:3001/getMusicList')
+    fetch(contextData.adress + '/getMusicList')
         .then(response => response.json())
         .then(result => {
             setSongsList(result);
                 if(result.length>0) setPlayerData({
-                    src:'http://192.168.1.155:3001/getSong/0',
+                    src: contextData.adress + '/getSong/0',
                     id:0,
                     time: '--:--'
                 });

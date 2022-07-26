@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../../store/context';
 import PlayButton from '../buttons/PlayButton/PlayButton';
 import './song-box-style.css';
 
@@ -11,9 +12,12 @@ type props = {
 const SongBox = (props:props) => {
     const { songName, link, id } = props;
 
+    const globals = useContext(Context);
     const [songDuration, setSongDuration] = useState('--:--');
 
-    const fakePlayer = new Audio('http://192.168.1.155:3001/getSong/'+id);
+    const adress = globals?.adress;
+
+    const fakePlayer = new Audio(adress + '/getSong/' + id);
     fakePlayer.preload = 'metadata';
     fakePlayer.onloadedmetadata = () => {
         const rawTime = Math.floor(fakePlayer.duration);
