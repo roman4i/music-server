@@ -11,7 +11,8 @@ const synthData = [{"name":"Something too long for mobile display","link":"Aless
 function App() {
     const startData: plData = {
         src: '',
-        id: 0
+        id: 0,
+        time: '--:--'
     } 
 
     const [songsList, setSongsList] = useState([]);
@@ -31,13 +32,14 @@ function App() {
   }
 
   useEffect(() => {
-    fetch('/getMusicList')
+    fetch('http://192.168.1.155:3001/getMusicList')
         .then(response => response.json())
         .then(result => {
             setSongsList(result);
                 if(result.length>0) setPlayerData({
-                    src:'getSong/0',
-                    id:0
+                    src:'http://192.168.1.155:3001/getSong/0',
+                    id:0,
+                    time: '--:--'
                 });
             }
         )

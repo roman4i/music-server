@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Context from '../../../store/context';
 
 import '../buttons-style.css';
@@ -14,13 +14,12 @@ const PlayButton = ({id}:{id: number}) => {
     if(globals !== null){currId = globals.playerSource.playerData.id}
 
     const changePlaying = () => {
-        const player:any = document.getElementById('player');
         if(!playerState.playing) {
             if(playerState.playing !== null) {
-
                 globals?.playerSource.setPlayerData((old) => {
                     return {
-                        src: '/getSong/' + id,
+                        ...old,
+                        src: 'http://192.168.1.155:3001/getSong/' + id,
                         id: id
                     }
                 })
