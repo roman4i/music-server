@@ -4,7 +4,7 @@ import BodyBox from '../BodyBox/BodyBox';
 import PlayerBox from '../PlayerBox/PlayerBox';
 import Context from '../../store/context';
 import Player from '../Player/Player';
-import { plData } from '../../store/types';
+import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
 
 const synthData = [{"name":"Something too long for mobile display","link":"Alesso - Falling","id":0},{"name":"Kokab - Got U (Ready or Not)","link":"Kokab - Got U (Ready or Not).mp3","id":1},{"name":"Vacuum - I Breathe","link":"Vacuum - I Breathe.mp3","id":2}]
@@ -16,7 +16,7 @@ function App() {
         time: '--:--'
     } 
 
-    const [songsList, setSongsList] = useState([]);
+    const [songsList, setSongsList] = useState<songsList>([]);
     const [playerData, setPlayerData] = useState<plData>(startData);
     const [playing, setPlaying] = useState(false);
 
@@ -29,7 +29,7 @@ function App() {
         playing: playing,
         setPlaying,
     },
-    songsList:songsList,
+    songsList: songsList,
     adress: serverAdrrList.local
   }
 
@@ -52,11 +52,16 @@ function App() {
 
     return (
         <>
-            <Context.Provider value={contextData}>
+            <Context.Provider value={ contextData }>
                 <Head />
                 <BodyBox songsList={ songsList } />
                 <PlayerBox />
-                <Player data={ contextData.playerSource } playing={playing} />
+                <Player 
+                    data={ contextData.playerSource } 
+                    playing={ contextData.playerState } 
+                    songs={ songsList } 
+                    adress={ contextData.adress } 
+                />
             </Context.Provider>
         </>
     );
