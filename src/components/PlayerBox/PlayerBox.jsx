@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayButton, PauseButton, MuteButton, VolumeButton } from '../buttons';
+import { PlayPlayer, MuteButton, VolumeButton } from '../buttons';
 
 import "./player-box-style.css";
 
@@ -10,8 +10,7 @@ const PlayerBox = () => {
                 <div>Song name</div> <div>00:00</div>
             </div>
             <div className='playerControls'>
-                <PlayButton />
-                <PauseButton />
+                <PlayPlayer />
                 <MuteButton />
                 <VolumeButton />
             </div>

@@ -12,7 +12,7 @@ const SongBox = (props:props) => {
     const { songName, link, id } = props;
     return(
         <div className='songBox'>
-            <PlayButton />
+            <PlayButton id={id} />
             <div className='songNumber'>{id}</div>
             <div className='songName'>{songName}</div>
             <div>--:--</div>
