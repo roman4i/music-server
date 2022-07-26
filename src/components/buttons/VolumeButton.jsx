@@ -6,7 +6,7 @@ import volumePicture from '../../icons/sound.png';
 // icon author - Bingge Liu
 const VolumeButton = () => {
     return(
-        <img className='volumeBtn' src={volumePicture} alt="Volume" />
+        <img className='playerBtn' src={volumePicture} alt="Volume" />
     )
 }
 

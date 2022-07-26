@@ -8,12 +8,7 @@
     height: auto;
 }
 
-.muteBtn {
-    width: 40px;
-    height: auto;
-}
-
-.volumeBtn {
+.playerBtn {
     width: 40px;
     height: auto;
 }
@@ -27,11 +22,8 @@
         width: 30px;
     }
     
-    .muteBtn {
+    .playerBtn {
         width: 30px;
-    }
-    
-    .volumeBtn {
-        width: 30px;
+        height: auto;
     }
 }

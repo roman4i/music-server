@@ -6,7 +6,7 @@ import mutePicture from '../../icons/mute.png';
 // icon author - Bingge Liu
 const MuteButton = () => {
     return(
-        <img className='muteBtn' src={mutePicture} alt="Play" />
+        <img className='playerBtn' src={mutePicture} alt="Play" />
     )
 }
 
