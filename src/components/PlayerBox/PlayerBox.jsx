@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { PlayPlayer, MuteButton, VolumeButton } from '../buttons';
+import { PlayPlayer, MuteButton, VolumeButton, PrevButton, NextButton } from '../buttons';
 import Context from '../../store/context';
 
 import "./player-box-style.css";
@@ -31,7 +31,9 @@ const PlayerBox = () => {
                 <div>{playerSongName}</div> <div>{songDuration}</div>
             </div>
             <div className='playerControls'>
+                <PrevButton />
                 <PlayPlayer />
+                <NextButton />
                 <MuteButton />
                 <VolumeButton />
             </div>

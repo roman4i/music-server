@@ -8,14 +8,18 @@
     height: auto;
 }
 
-.muteBtn {
+.playerBtn {
     width: 40px;
     height: auto;
 }
 
-.volumeBtn {
-    width: 40px;
-    height: auto;
+.volumeSlider {
+    position: fixed;
+    transform: rotate(270deg);
+    bottom: 110px;
+    height: 40px;
+    width: 150px;
+    right: -30px;
 }
 
 @media only screen and (min-width: 768px){
@@ -27,11 +31,16 @@
         width: 30px;
     }
     
-    .muteBtn {
+    .playerBtn {
         width: 30px;
+        height: auto;
     }
-    
-    .volumeBtn {
-        width: 30px;
+
+    .volumeSlider {
+        position: fixed;
+        transform: rotate(270deg);
+        width: 100px;
+        left: calc(50% + 135px);
+        bottom: 100px;
     }
 }

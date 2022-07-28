@@ -1,7 +1,8 @@
 import PlayButton from "./PlayButton/PlayButton";
-import PauseButton from "./PauseButton/PauseButton";
 import MuteButton from "./MuteButton";
 import VolumeButton from "./VolumeButton";
 import PlayPlayer from "./PlayPlayer";
+import NextButton from "./NextButton";
+import PrevButton from "./PrevButton";
 
-export { PlayButton, PauseButton, MuteButton, VolumeButton, PlayPlayer };
+export { PlayButton, MuteButton, VolumeButton, PlayPlayer, NextButton, PrevButton };

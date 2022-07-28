@@ -19,7 +19,7 @@ const PlayButton = ({id}:{id: number}) => {
                 globals?.playerSource.setPlayerData((old) => {
                     return {
                         ...old,
-                        src: 'http://192.168.1.155:3001/getSong/' + id,
+                        src: globals.adress + '/getSong/' + id,
                         id: id
                     }
                 })
