@@ -30,7 +30,7 @@ function App() {
         setPlaying,
     },
     songsList: songsList,
-    adress: serverAdrrList.local
+    adress: serverAdrrList.current
   }
 
   useEffect(() => {
