@@ -13,9 +13,11 @@ const PrevButton = () => {
     const setPlaying: any = globals?.playerState.setPlaying;
 
     const onPrev = () => {
-        setPlaying(false);
+        // setPlaying(false);
+        const player: any = document.getElementById('player');
 
         if( id === 0) {
+            player.src = globals?.adress + '/getSong/' + (songsCount - 1);
             setId((old: any) => {
                 return{
                     ...old,
@@ -24,16 +26,17 @@ const PrevButton = () => {
                 }
             });
         } else {
+            player.src = globals?.adress + '/getSong/' + (id - 1)
             setId((old:any) => {
                 return{
                     ...old,
                     id: id - 1,
-                    src: globals?.adress + '/getSong/' + (id-1)
+                    src: globals?.adress + '/getSong/' + (id - 1)
                 }
             })
         }
         setTimeout(() => setPlaying(true), 1000)
-
+        player.play();
     }
 
     return(

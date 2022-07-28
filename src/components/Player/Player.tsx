@@ -8,15 +8,14 @@ type data = {
 
 type props = {
     data: data, 
-    songs: songsList, 
+    songs?: songsList, 
     playing: {
         playing: boolean,
         setPlaying: React.Dispatch<React.SetStateAction<boolean>>
-    }, 
-    adress: string,
+    },
 }
 
-const Player = ({data, playing, songs, adress}: props) => {
+const Player = ({ data, playing }: props) => {
 
     // works not right will do it later
     // useEffect(() => {
@@ -47,19 +46,19 @@ const Player = ({data, playing, songs, adress}: props) => {
     //     }
     // }, [])
 
-    useEffect(() => {
-        const player: any = document.getElementById('player');
-        if(playing.playing) {
-            player.play()
-        } else {
-            player.pause()
-        }
-    }, [playing.playing])
+    // useEffect(() => {
+    //     const player: any = document.getElementById('player');
+    //     if(playing.playing) {
+    //         player.play()
+    //     } else {
+    //         player.pause()
+    //     }
+    // }, [playing.playing])
 
     return(
         <audio 
             id="player" 
-            src={data.playerData.src} 
+            src={''} 
             controls={false} 
             autoPlay={false}
         ></audio>

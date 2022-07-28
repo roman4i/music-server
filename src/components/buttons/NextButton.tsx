@@ -13,9 +13,11 @@ const NextButton = () => {
     const setPlaying: any = globals?.playerState.setPlaying;
 
     const onNext = () => {
-        setPlaying(false);
+        const player: any = document.getElementById('player');
+
+        // setPlaying(false);
         if(id === songsCount - 1) {
-            
+            player.src = globals?.adress + '/getSong/0';
             setId((old: any) => {
                 return{
                     ...old,
@@ -24,6 +26,7 @@ const NextButton = () => {
                 }
             });
         } else {
+            player.src = globals?.adress + '/getSong/' + (id + 1);
             setId((old: any) => {
                 return{
                     ...old,
@@ -33,6 +36,7 @@ const NextButton = () => {
             });
         }
         
+        player.play();
         setTimeout(() => setPlaying(true), 1000)
     }
 

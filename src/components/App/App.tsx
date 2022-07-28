@@ -13,7 +13,6 @@ function App() {
     const startData: plData = {
         src: '',
         id: 0,
-        time: '--:--'
     } 
 
     const [songsList, setSongsList] = useState<songsList>([]);
@@ -30,7 +29,7 @@ function App() {
         setPlaying,
     },
     songsList: songsList,
-    adress: serverAdrrList.current
+    adress: serverAdrrList.local
   }
 
   useEffect(() => {
@@ -41,7 +40,6 @@ function App() {
                 if(result.length>0) setPlayerData({
                     src: contextData.adress + '/getSong/0',
                     id:0,
-                    time: '--:--'
                 });
             }
         )
@@ -59,8 +57,6 @@ function App() {
                 <Player 
                     data={ contextData.playerSource } 
                     playing={ contextData.playerState } 
-                    songs={ songsList } 
-                    adress={ contextData.adress } 
                 />
             </Context.Provider>
         </>
