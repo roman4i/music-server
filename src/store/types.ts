@@ -1,7 +1,6 @@
 type plData = {
     src: string,
     id: number,
-    time: string,
 }
 
 type songsList = {

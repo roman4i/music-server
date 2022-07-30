@@ -18,6 +18,7 @@ const PlayerBox = () => {
             if(playerData.id === val.id) songName = val.name
         });
         const fakePlayer = new Audio(playerData.src);
+        fakePlayer.preload = 'metadata';
         fakePlayer.onloadedmetadata = () => {
             const rawTime = Math.floor(fakePlayer.duration);
             setSongDuration(Math.floor(rawTime/60)+':'+Math.floor(rawTime%60))

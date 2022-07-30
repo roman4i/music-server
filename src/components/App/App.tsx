@@ -13,7 +13,6 @@ function App() {
     const startData: plData = {
         src: '',
         id: 0,
-        time: '--:--'
     } 
 
     const [songsList, setSongsList] = useState<songsList>([]);
@@ -30,7 +29,7 @@ function App() {
         setPlaying,
     },
     songsList: songsList,
-    adress: serverAdrrList.current
+    adress: serverAdrrList.outer
   }
 
   useEffect(() => {
@@ -38,11 +37,14 @@ function App() {
         .then(response => response.json())
         .then(result => {
             setSongsList(result);
-                if(result.length>0) setPlayerData({
-                    src: contextData.adress + '/getSong/0',
-                    id:0,
-                    time: '--:--'
-                });
+                if(result.length > 0) {
+                    setPlayerData({
+                        src: contextData.adress + '/getSong/0',
+                        id:0,
+                    })
+                    const player: any = document.getElementById('player');
+                    player.src = contextData.adress + '/getSong/0';
+                };
             }
         )
         .catch(err =>{
@@ -58,9 +60,8 @@ function App() {
                 <PlayerBox />
                 <Player 
                     data={ contextData.playerSource } 
-                    playing={ contextData.playerState } 
-                    songs={ songsList } 
-                    adress={ contextData.adress } 
+                    adress = {contextData.adress}
+                    songs = { songsList }
                 />
             </Context.Provider>
         </>
