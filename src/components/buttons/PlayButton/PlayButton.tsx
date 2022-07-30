@@ -8,8 +8,6 @@ import pausePicture from '../../../icons/pause.png';
 // icon author - Bingge Liu
 const PlayButton = ({id}:{id: number}) => {
     const globals = useContext(Context);
-    // let playerState:any;
-    // if(globals !== null){playerState = {...globals.playerState}}
     let playerState: any = globals?.playerState;
     let currId;
     if(globals !== null){currId = globals.playerSource.playerData.id}
@@ -18,12 +16,9 @@ const PlayButton = ({id}:{id: number}) => {
         const player: any = document.getElementById('player');
 
         if(!playerState.playing) {
-            globals?.playerSource.setPlayerData((old) => {
-                return {
-                    ...old,
+            globals?.playerSource.setPlayerData({
                     src: globals.adress + '/getSong/' + id,
                     id: id
-                }
             })
             player.src = globals?.adress + '/getSong/' + id;
             player.play();

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { plData, songsList } from "../../store/types";
+import { plData } from "../../store/types";
 
 type data = {
     playerData: plData;
@@ -8,52 +8,36 @@ type data = {
 
 type props = {
     data: data, 
-    songs?: songsList, 
-    playing: {
-        playing: boolean,
-        setPlaying: React.Dispatch<React.SetStateAction<boolean>>
-    },
+    songs?: any, 
+    adress: string,
 }
 
-const Player = ({ data, playing }: props) => {
+const Player = ({ data, adress, songs }: props) => {
 
-    // works not right will do it later
-    // useEffect(() => {
-    //     const player: any = document.getElementById('player');
-    //     const currentId = data.playerData.id;
-    //     player.onended = () => {
-    //         playing.setPlaying(false);
-    //         if(currentId === songs.length - 1) {
-    //             data.setPlayerData(old => {
-    //                 return{
-    //                     ...old,
-    //                     id: 0,
-    //                     src: adress + '/getSong/0' ,
-    //                 }
-    //             })
-    //         } else {
-    //             data.setPlayerData(old => {
-    //                 return{
-    //                     ...old,
-    //                     id: old.id + 1,
-    //                     src: adress + '/getSong/' + (old.id + 1) ,
-    //                 }
-    //             })
-    //         }
-    //         setInterval(() => {
-    //             playing.setPlaying(true)
-    //         }, 1000);
-    //     }
-    // }, [])
-
-    // useEffect(() => {
-    //     const player: any = document.getElementById('player');
-    //     if(playing.playing) {
-    //         player.play()
-    //     } else {
-    //         player.pause()
-    //     }
-    // }, [playing.playing])
+    useEffect(() => {
+        const player: any = document.getElementById('player');
+        player.onended = () => {
+            if(data.playerData.id === songs?.length - 1) {
+                player.src = adress + '/getSong/0';
+                data.setPlayerData({
+                    src: adress + '/getSong/0',
+                    id: 0,
+                })
+            } else {
+                console.log(data.playerData.id);
+                
+                console.log(adress + '/getSong/' + (data.playerData.id + 1));
+                player.src = adress + '/getSong/' + (data.playerData.id + 1);
+                data.setPlayerData(old => {
+                    return {
+                        src: adress + '/getSong/' + (old.id + 1),
+                        id: old.id + 1
+                    }
+                })
+            }
+            player.play();
+        }
+    }, [data.playerData]);
 
     return(
         <audio 

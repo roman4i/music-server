@@ -29,7 +29,7 @@ function App() {
         setPlaying,
     },
     songsList: songsList,
-    adress: serverAdrrList.local
+    adress: serverAdrrList.outer
   }
 
   useEffect(() => {
@@ -37,10 +37,14 @@ function App() {
         .then(response => response.json())
         .then(result => {
             setSongsList(result);
-                if(result.length>0) setPlayerData({
-                    src: contextData.adress + '/getSong/0',
-                    id:0,
-                });
+                if(result.length > 0) {
+                    setPlayerData({
+                        src: contextData.adress + '/getSong/0',
+                        id:0,
+                    })
+                    const player: any = document.getElementById('player');
+                    player.src = contextData.adress + '/getSong/0';
+                };
             }
         )
         .catch(err =>{
@@ -56,7 +60,8 @@ function App() {
                 <PlayerBox />
                 <Player 
                     data={ contextData.playerSource } 
-                    playing={ contextData.playerState } 
+                    adress = {contextData.adress}
+                    songs = { songsList }
                 />
             </Context.Provider>
         </>
