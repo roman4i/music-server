@@ -1,29 +1,21 @@
-const express = require("express");
-const path = require("path");
-const cors = require("cors");
-const checkMusic = require('./utils/checkMusicFolder');
-const getMusicList = require('./requests/getMusicList');
-const getSong = require("./requests/getSong");
+import express from "express";
+import cors from "cors";
+import musicListRoutes from "./routes/musicList.routes.js";
+import songsRoutes from "./routes/song.routes.js";
 
 const app = express();
 
 const port = 3001;
-const project_dir = 'C:\\Users\\Роман\\Documents\\projects\\music-server'
 
-// don't forget to execute 'addMusicFolder.js' before use server, then put your files there
-checkMusic();
-
-app.use(express.static(path.join(project_dir, 'build')));
 app.use(cors());
 
+app.use('/musicList', musicListRoutes);
+app.use('/songs', songsRoutes);
+
 app.get('/', (req, res) => {
-    res.sendFile(path.join(project_dir, 'build', 'index.html'));
-});
-
-app.get('/getMusicList', getMusicList);
-
-app.get('/getSong/:song',getSong);
+  res.send('Go to "/getMusicList" route');
+})
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`);
 })

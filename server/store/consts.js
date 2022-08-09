@@ -1,9 +1,10 @@
-const path = require("path");
+import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const serverPath = path.parse(__dirname).dir;
-const musicListPath = path.join(serverPath, 'store', 'music-list.txt')
 const musicPath = path.join(serverPath, "music");
 
-module.exports.serverPath = serverPath;
-module.exports.musicListPath = musicListPath;
-module.exports.musicPath = musicPath;
+export { serverPath, musicPath };
