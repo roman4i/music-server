@@ -8,7 +8,8 @@ import pausePicture from '../../../icons/pause.png';
 // icon author - Bingge Liu
 const PlayButton = ({ id }: { id: number }) => {
     const globals = useContext(Context);
-    let playerState: any = globals?.playerState;
+    // let playerState: any = globals?.playerState;
+    let playerState: any = true;
     let currId;
     if(globals !== null){currId = globals.playerSource.playerData.id}
 

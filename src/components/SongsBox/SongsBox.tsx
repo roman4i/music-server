@@ -12,7 +12,7 @@ const SongsBox = ({ songs }: props) => {
     if(songs.length > 0) {
         songsArray = songs.map((val, ind) => {
             return(
-                <SongBox songName={val.name} id={val._id} key={ind} duration={val.duration} />
+                <SongBox songName={val.name} index={ind} key={ind} duration={val.duration} />
             )
         })
     } else {

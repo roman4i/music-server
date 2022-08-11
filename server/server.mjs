@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import musicListRoutes from "./routes/musicList.routes.js";
-import songsRoutes from "./routes/song.routes.js";
+import musicListRoutes from "./routes/musicList.routes.mjs";
+import songsRoutes from "./routes/song.routes.mjs";
 
 const app = express();
 

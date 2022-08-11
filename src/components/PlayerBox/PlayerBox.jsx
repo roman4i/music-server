@@ -10,7 +10,9 @@ const PlayerBox = () => {
     const playerData = globals.playerSource.playerData
 
     const [playerSongName, setPlayerSongName] = useState("Song name");
-    const [songDuration, setSongDuration] = useState(playerData.time)
+    const [songDuration, setSongDuration] = useState('--:--');
+
+    useEffect(() => {}, []);
 
     return(
         <div className='playerBox'>

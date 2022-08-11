@@ -2,7 +2,6 @@
   "name": "music-server",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -24,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "local-server": "node server/server.js"
+    "local-server": "node server/server.mjs"
   },
   "eslintConfig": {
     "extends": [

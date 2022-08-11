@@ -6,32 +6,30 @@ import Context from '../../store/context';
 import Player from '../Player/Player';
 import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
+import { getSongsList } from '../../api/songs';
 
 function App() {
     const startData: plData = {
         src: '',
         id: 0,
+        playing: false,
     } 
 
     const [songsList, setSongsList] = useState<songsList>([]);
     const [playerData, setPlayerData] = useState<plData>(startData);
-    const [playing, setPlaying] = useState(false);
 
   const contextData = {
     playerSource: {
-        playerData: playerData,
-        setPlayerData: setPlayerData,
-    },
-    playerState: {
-        playing: playing,
-        setPlaying,
+        playerData,
+        setPlayerData,
     },
     songsList: songsList,
     adress: serverAdrrList.outer
   }
 
   useEffect(() => {
-    
+    getSongsList(contextData.adress)
+        .then(result => setSongsList(result))
   }, []);
 
     return (

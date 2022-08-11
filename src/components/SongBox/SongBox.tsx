@@ -4,21 +4,23 @@ import './song-box-style.css';
 
 type props = {
     songName: string,
-    id: number,
+    index: number,
     duration: number,
 }
 
 const SongBox = (props: props) => {
-    const { songName, id } = props;
+    const { songName, index, duration } = props;
 
-    const [songDuration, setSongDuration] = useState('--:--');
+    const secDuration = duration % 60;
+    const minutesDuration = 
+        Math.trunc(duration / 60) + ':' + (secDuration < 10 ? '0' : '') + secDuration;
 
     return(
         <div className='songBox'>
-            <PlayButton id={id} />
-            <div className='songNumber'>{id}</div>
+            <PlayButton id={index} />
+            <div className='songNumber'>{index}</div>
             <div className='songName'>{songName}</div>
-            <div>{songDuration}</div>
+            <div>{ minutesDuration }</div>
         </div>
     )
 }

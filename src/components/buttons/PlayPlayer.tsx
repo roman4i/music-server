@@ -7,7 +7,7 @@ import "./buttons-style.css";
 const PlayPlayer = () => {
     const globals = useContext(Context);
     let playerState:any;
-    if(globals !== null){playerState = {...globals.playerState}}
+    if(globals !== null){playerState = {...globals.playerSource.playerData}}
 
     const changePlaying = () => {
         

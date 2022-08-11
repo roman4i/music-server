@@ -10,7 +10,7 @@ const PrevButton = () => {
     const songsCount: any = globals?.songsList.length;
     let setId: any;
     if(globals !== null) {setId = globals?.playerSource.setPlayerData}
-    const setPlaying: any = globals?.playerState.setPlaying;
+    // const setPlaying: any = globals?.playerState.setPlaying;
 
     const onPrev = () => {
         
