@@ -12,20 +12,6 @@ const PlayerBox = () => {
     const [playerSongName, setPlayerSongName] = useState("Song name");
     const [songDuration, setSongDuration] = useState(playerData.time)
 
-    useEffect(() => {
-        let songName = 'Song name';
-        songsList.forEach(val => {
-            if(playerData.id === val.id) songName = val.name
-        });
-        const fakePlayer = new Audio(playerData.src);
-        fakePlayer.preload = 'metadata';
-        fakePlayer.onloadedmetadata = () => {
-            const rawTime = Math.floor(fakePlayer.duration);
-            setSongDuration(Math.floor(rawTime/60)+':'+Math.floor(rawTime%60))
-        };
-        setPlayerSongName(songName);
-    }, [playerData]);
-
     return(
         <div className='playerBox'>
             <div className='playerHead'>

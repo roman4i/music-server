@@ -10,10 +10,7 @@ const PlayPlayer = () => {
     if(globals !== null){playerState = {...globals.playerState}}
 
     const changePlaying = () => {
-        const player: any = document.getElementById('player');
-
-        playerState.setPlaying((old: any) => !old);
-        playerState.playing ? player.pause() : player.play();
+        
     }
 
     return(

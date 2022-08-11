@@ -7,8 +7,6 @@ import Player from '../Player/Player';
 import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
 
-const synthData = [{"name":"Something too long for mobile display","link":"Alesso - Falling","id":0},{"name":"Kokab - Got U (Ready or Not)","link":"Kokab - Got U (Ready or Not).mp3","id":1},{"name":"Vacuum - I Breathe","link":"Vacuum - I Breathe.mp3","id":2}]
-
 function App() {
     const startData: plData = {
         src: '',
@@ -33,30 +31,14 @@ function App() {
   }
 
   useEffect(() => {
-    fetch(contextData.adress + '/getMusicList')
-        .then(response => response.json())
-        .then(result => {
-            setSongsList(result);
-                if(result.length > 0) {
-                    setPlayerData({
-                        src: contextData.adress + '/getSong/0',
-                        id:0,
-                    })
-                    const player: any = document.getElementById('player');
-                    player.src = contextData.adress + '/getSong/0';
-                };
-            }
-        )
-        .catch(err =>{
-            if(err) console.log(err.message);
-        })
+    
   }, []);
 
     return (
         <>
             <Context.Provider value={ contextData }>
                 <Head />
-                <BodyBox songsList={ songsList } />
+                <BodyBox songsLists={ songsList } />
                 <PlayerBox />
                 <Player 
                     data={ contextData.playerSource } 

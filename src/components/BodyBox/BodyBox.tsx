@@ -1,22 +1,19 @@
 import React from 'react';
 import SongsData from '../SongsData/SongsData';
 import SongsBox from '../SongsBox/SongsBox';
+import { songsList } from '../../store/types';
 import './body-box-style.css';
 
 type props = {
-    songsList: {
-        name: string,
-        link: string,
-        id:number,
-    }[]
+    songsLists: songsList,
 }
 
-const BodyBox = ({ songsList }:props) => {
+const BodyBox = ({songsLists}:props) => {
     return(
         <div className='bodyBox'>
-            <SongsData count={ songsList.length } />
+            <SongsData count={ songsLists.length } />
             <hr />
-            <SongsBox songs={ songsList } />
+            <SongsBox songs={ songsLists } />
         </div>
     )
 }

@@ -6,7 +6,8 @@ type plData = {
 type songsList = {
     name: string,
     link: string,
-    id: number
+    _id: number,
+    duration: number,
 }[]
 
 type contextData = {

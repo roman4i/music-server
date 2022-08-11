@@ -22,8 +22,7 @@ const VolumeButton = () => {
     }
 
     const changeVol = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const player: any = document.getElementById('player');
-        player.volume = event.target.value  ;
+        
     }
 
     return(

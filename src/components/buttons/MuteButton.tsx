@@ -6,9 +6,6 @@ import mutePicture from '../../icons/mute.png';
 // icon author - Bingge Liu
 const MuteButton = () => {
     const onMute = () => {
-        const player: any = document.getElementById('player');
-        console.log(player.muted);
-        player.muted ? player.muted = false : player.muted = true;
     }
 
     return(
