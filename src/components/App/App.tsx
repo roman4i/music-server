@@ -10,9 +10,9 @@ import { getSongsList } from '../../api/songs';
 
 function App() {
     const startData: plData = {
-        src: '',
-        id: 0,
-        playing: false,
+      src: '',
+      id: '',
+      playing: false,
     } 
 
     const [songsList, setSongsList] = useState<songsList>([]);
@@ -20,8 +20,8 @@ function App() {
 
   const contextData = {
     playerSource: {
-        playerData,
-        setPlayerData,
+      playerData,
+      setPlayerData,
     },
     songsList: songsList,
     adress: serverAdrrList.outer
@@ -29,23 +29,23 @@ function App() {
 
   useEffect(() => {
     getSongsList(contextData.adress)
-        .then(result => setSongsList(result))
+      .then(result => setSongsList(result))
   }, []);
 
-    return (
-        <>
-            <Context.Provider value={ contextData }>
-                <Head />
-                <BodyBox songsLists={ songsList } />
-                <PlayerBox />
-                <Player 
-                    data={ contextData.playerSource } 
-                    adress = {contextData.adress}
-                    songs = { songsList }
-                />
-            </Context.Provider>
-        </>
-    );
+  return (
+    <>
+      <Context.Provider value={ contextData }>
+        <Head />
+        <BodyBox songsLists={ songsList } />
+        <PlayerBox />
+        <Player 
+          data={ contextData.playerSource } 
+          adress = {contextData.adress}
+          songs = { songsList }
+        />
+      </Context.Provider>
+    </>
+  );
 }
 
 export default App;

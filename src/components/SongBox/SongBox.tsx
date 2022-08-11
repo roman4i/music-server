@@ -6,10 +6,11 @@ type props = {
     songName: string,
     index: number,
     duration: number,
+    id: string,
 }
 
 const SongBox = (props: props) => {
-    const { songName, index, duration } = props;
+    const { songName, index, duration, id } = props;
 
     const secDuration = duration % 60;
     const minutesDuration = 
@@ -17,7 +18,7 @@ const SongBox = (props: props) => {
 
     return(
         <div className='songBox'>
-            <PlayButton id={index} />
+            <PlayButton id={id} />
             <div className='songNumber'>{index}</div>
             <div className='songName'>{songName}</div>
             <div>{ minutesDuration }</div>

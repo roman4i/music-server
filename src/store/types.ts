@@ -1,13 +1,13 @@
 type plData = {
     src: string,
-    id: number,
+    id: string,
     playing: boolean,
 }
 
 type songsList = {
     name: string,
-    link: string,
-    _id: number,
+    src: string,
+    _id: string,
     duration: number,
 }[]
 
