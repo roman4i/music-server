@@ -37,7 +37,6 @@ function App() {
       <Context.Provider value={ contextData }>
         <Head />
         <BodyBox songsLists={ songsList } />
-        <PlayerBox />
         <Player />
       </Context.Provider>
     </>

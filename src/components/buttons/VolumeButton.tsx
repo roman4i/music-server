@@ -27,7 +27,7 @@ const VolumeButton = () => {
   }
 
   return(
-    <div>
+    <div className='volumeContainer' >
       <input 
         className='volumeSlider' 
         type="range" 
