@@ -1,21 +1,27 @@
+const playerItem = () => document.getElementById('player');
+
 const play = () => {
-  const player = document.getElementById('player');
-  player.play();
+  playerItem().play();
 }
 
 const setSrc = (src) => {
-  const player = document.getElementById('player');
-  player.src = src;
+  playerItem().src = src;
 }
 
 const pause = () => {
-  const player = document.getElementById('player');
-  player.pause();
+  playerItem().pause();
 }
 
 const src = () => {
-  const player = document.getElementById('player');
-  return player.src;
+  return playerItem().src;
+}
+
+const setMute = (state) => {
+  playerItem().muted = state;
+}
+
+const setVolume = (val) => {
+  playerItem().volume = val;
 }
 
 const playerAct = {
@@ -23,6 +29,8 @@ const playerAct = {
   setSrc,
   pause,
   src,
+  setMute,
+  setVolume,
 }
 
 export default playerAct;
