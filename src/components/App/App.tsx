@@ -38,11 +38,7 @@ function App() {
         <Head />
         <BodyBox songsLists={ songsList } />
         <PlayerBox />
-        <Player 
-          data={ contextData.playerSource } 
-          adress = {contextData.adress}
-          songs = { songsList }
-        />
+        <Player />
       </Context.Provider>
     </>
   );
