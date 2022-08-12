@@ -24,6 +24,14 @@ const setVolume = (val) => {
   playerItem().volume = val;
 }
 
+const currTime = () => {
+  return playerItem().currentTime;
+}
+
+const seek = (val) => {
+  playerItem().fastSeek(val);
+}
+
 const playerAct = {
   play,
   setSrc,
@@ -31,6 +39,8 @@ const playerAct = {
   src,
   setMute,
   setVolume,
+  currTime,
+  seek,
 }
 
 export default playerAct;

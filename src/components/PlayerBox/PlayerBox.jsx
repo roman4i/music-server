@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayPlayer, MuteButton, VolumeButton, PrevButton, NextButton } from '../buttons';
+import DurationPanel from './DurationPanel';
 import Context from '../../store/context';
 
 import "./player-box-style.css";
@@ -10,9 +11,16 @@ const PlayerBox = () => {
   const songsList = globals.songsList;
   const playerData = globals.playerSource.playerData
 
-  const [playerSongName, setPlayerSongName] = useState("Song name");
-  const [songDuration, setSongDuration] = useState('--:--');
+  let currSong;
+  songsList.forEach(val => {
+    if(val._id === playerData.id) currSong = val;
+  })
+  if(currSong === undefined) currSong = {
+    name: 'Song name',
+    duration: 0,
+  }
 
+  // auto next song
   useEffect(() => {
     const player = document.getElementById('player');
 
@@ -26,9 +34,8 @@ const PlayerBox = () => {
 
   return(
     <div className='playerBox'>
-      <div className='playerHead'>
-        <div>{playerSongName}</div> <div>{songDuration}</div>
-      </div>
+      <div className='playerSongName'>{ currSong.name }</div>
+      <DurationPanel duration={currSong.duration} playing={ playerData.playing } />
       <div className='playerControls'>
         <PrevButton />
         <PlayPlayer />
