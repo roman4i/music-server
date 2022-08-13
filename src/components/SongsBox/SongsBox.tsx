@@ -1,21 +1,18 @@
 import React from 'react';
 import './songs-box-style.css';
 import SongBox from '../SongBox/SongBox';
+import { songsList } from '../../store/types';
 
 type props = {
-    songs: {
-        name: string,
-        link: string,
-        id:number,
-    }[]
+    songs: songsList,
 }
 
-const SongsBox = ({ songs }:props) => {
+const SongsBox = ({ songs }: props) => {
     let songsArray:JSX.Element[]|string = [];
     if(songs.length > 0) {
         songsArray = songs.map((val, ind) => {
             return(
-                <SongBox songName={val.name} link={val.link} id={val.id} key={ind} />
+                <SongBox songName={val.name} index={ind} key={ind} duration={val.duration} id={val._id} />
             )
         })
     } else {

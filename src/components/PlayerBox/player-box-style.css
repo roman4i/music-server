@@ -8,15 +8,28 @@
     box-sizing: border-box
 }
 
-.playerHead {
+.playerDuration {
     display: flex;
     justify-content: space-between;
     margin-bottom: 13px;
 }
 
+.playerDuration div {
+    width: 20%;
+    text-align: center;
+}
+
+.playerDuration input[type=range] {
+    width: 60%;
+}
+
 .playerControls {
     display: flex;
     justify-content: space-around;
+}
+
+.playerSongName {
+    text-align: center;
 }
 
 @media only screen and (min-width: 768px) {

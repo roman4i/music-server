@@ -1,6 +1,6 @@
-import { musicPath } from "../store/consts.js";
+import { musicPath } from "../store/consts.mjs";
 import path from "path";
-import { client, musicList } from "../config/mongo-config.js";
+import { client, musicList } from "../config/mongo-config.mjs";
 import { ObjectId } from "mongodb";
 
 const getSong = async (req, res) => {

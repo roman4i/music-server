@@ -1,11 +1,18 @@
-import { musicList, client } from '../config/mongo-config.js';
+import { musicList, client } from '../config/mongo-config.mjs';
 
 const getMusicList = async (req, res) => {
   await client.connect();
 
   musicList.find({}).toArray()
     .then(result => {
-      res.send(JSON.stringify(result));
+      const modResult = result.map(val => {
+        const modDuration = Math.round(val.duration);
+        return {
+          ...val,
+          duration:modDuration,
+        }
+      })
+      res.send(JSON.stringify(modResult));
     })
     .catch(err => {
       console.error(err);

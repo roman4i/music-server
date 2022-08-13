@@ -13,13 +13,17 @@
     height: auto;
 }
 
+.volumeContainer {
+    position: relative;
+}
+
 .volumeSlider {
-    position: fixed;
+    position: absolute;
     transform: rotate(270deg);
     bottom: 110px;
     height: 40px;
     width: 150px;
-    right: -30px;
+    right: -60px;
 }
 
 @media only screen and (min-width: 768px){

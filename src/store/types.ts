@@ -1,22 +1,20 @@
 type plData = {
     src: string,
-    id: number,
+    id: string,
+    playing: boolean,
 }
 
 type songsList = {
     name: string,
-    link: string,
-    id: number
+    src: string,
+    _id: string,
+    duration: number,
 }[]
 
 type contextData = {
     playerSource: {
         playerData: plData,
         setPlayerData: React.Dispatch<React.SetStateAction<plData>>
-    },
-    playerState: {
-        playing: boolean,
-        setPlaying: React.Dispatch<React.SetStateAction<boolean>>
     },
     songsList: songsList,
     adress: string,

@@ -6,66 +6,41 @@ import Context from '../../store/context';
 import Player from '../Player/Player';
 import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
-
-const synthData = [{"name":"Something too long for mobile display","link":"Alesso - Falling","id":0},{"name":"Kokab - Got U (Ready or Not)","link":"Kokab - Got U (Ready or Not).mp3","id":1},{"name":"Vacuum - I Breathe","link":"Vacuum - I Breathe.mp3","id":2}]
+import { getSongsList } from '../../api/songs';
 
 function App() {
     const startData: plData = {
-        src: '',
-        id: 0,
+      src: '',
+      id: '',
+      playing: false,
     } 
 
     const [songsList, setSongsList] = useState<songsList>([]);
     const [playerData, setPlayerData] = useState<plData>(startData);
-    const [playing, setPlaying] = useState(false);
 
   const contextData = {
     playerSource: {
-        playerData: playerData,
-        setPlayerData: setPlayerData,
-    },
-    playerState: {
-        playing: playing,
-        setPlaying,
+      playerData,
+      setPlayerData,
     },
     songsList: songsList,
     adress: serverAdrrList.outer
   }
 
   useEffect(() => {
-    fetch(contextData.adress + '/getMusicList')
-        .then(response => response.json())
-        .then(result => {
-            setSongsList(result);
-                if(result.length > 0) {
-                    setPlayerData({
-                        src: contextData.adress + '/getSong/0',
-                        id:0,
-                    })
-                    const player: any = document.getElementById('player');
-                    player.src = contextData.adress + '/getSong/0';
-                };
-            }
-        )
-        .catch(err =>{
-            if(err) console.log(err.message);
-        })
+    getSongsList(contextData.adress)
+      .then(result => setSongsList(result))
   }, []);
 
-    return (
-        <>
-            <Context.Provider value={ contextData }>
-                <Head />
-                <BodyBox songsList={ songsList } />
-                <PlayerBox />
-                <Player 
-                    data={ contextData.playerSource } 
-                    adress = {contextData.adress}
-                    songs = { songsList }
-                />
-            </Context.Provider>
-        </>
-    );
+  return (
+    <>
+      <Context.Provider value={ contextData }>
+        <Head />
+        <BodyBox songsLists={ songsList } />
+        <Player />
+      </Context.Provider>
+    </>
+  );
 }
 
 export default App;
