@@ -1,10 +1,12 @@
 import React from 'react';
+import Menu from '../Menu/Menu';
 import './style.css';
 
 const Head = () => {
     return(
-        <div className='header'>
-            Your music server!
+        <div className='headerBox'>
+            <Menu />
+            <div className='header'>Your music server!</div>
         </div>
     )
 }

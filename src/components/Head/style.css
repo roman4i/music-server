@@ -3,3 +3,8 @@
     margin: 8px auto 10px auto;
     width: max-content;
 }
+
+.headerBox {
+    display: flex;
+    align-items: center;
+}
