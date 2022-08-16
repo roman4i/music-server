@@ -8,6 +8,7 @@ import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
 import { getSongsList } from '../../api/songs';
 import UploadPage from '../../pages/UploadPage/UploadPage';
+import MainPage from '../../pages/MainPage/MainPage';
 
 function App() {
     const startData: plData = {
@@ -28,10 +29,10 @@ function App() {
     adress: serverAdrrList.outer
   }
 
-  const main = (<>
-    <BodyBox songsLists={ songsList } />
-    <Player />
-  </>);
+  // const main = (<>
+  //   <BodyBox songsLists={ songsList } />
+  //   <Player />
+  // </>);
 
   useEffect(() => {
     getSongsList(contextData.adress)
@@ -44,8 +45,12 @@ function App() {
         <BrowserRouter>
           <Head />
           <Routes>
-            <Route path='/' element={ main } />
-            <Route path='upload' element={ <UploadPage /> } />
+            <Route path='/' 
+              element={
+                <MainPage adress={contextData.adress} songsData={{songsList, setSongsList}} />
+              } 
+            />
+            <Route path='upload' element={ <UploadPage source={contextData.adress} /> } />
           </Routes>
           </BrowserRouter>
       </Context.Provider>

@@ -2,7 +2,9 @@ import { musicPath } from "../store/consts.mjs";
 import path from "path";
 import { client, musicList } from "../config/mongo-config.mjs";
 import { ObjectId } from "mongodb";
+import { parseBuffer } from "music-metadata";
 
+// getSong request
 const getSong = async (req, res) => {
   try {
     await client.connect();
@@ -12,6 +14,68 @@ const getSong = async (req, res) => {
   } catch (error) {
     res.status(400).end();
   }
-};
+}
 
-export { getSong };
+// gets metadata from song and writes to the db
+const getSongData = async (files) => {
+  let toWrite = [];
+  for(let key in files){
+    const songData = await parseBuffer(files[key].data, 'audio/mpeg');
+    toWrite.push(
+      {
+        src: files[key].name,
+        name: path.parse(files[key].name).base,
+        duration: songData.format.duration
+      }
+    );
+    // musicPath + files[key].name
+    files[key].mv(path.join(musicPath, files[key].name));
+  }
+  if(toWrite.length > 0) {
+    const res = await musicList.insertMany(toWrite);
+    return res.insertedCount
+  }
+  return 0;
+}
+
+const uploadSong = async (req, res) => {
+  try {
+    if(req.files) {
+      let filesList = [];
+
+      for(let key in req.files){
+        filesList.push({ name: req.files[key].name });
+      }
+
+      await client.connect();
+      const exists = await musicList.find({
+        $or: [...filesList]
+      }).toArray();
+
+      if(exists.length > 0) {
+        let noCopies = {};
+        for(let key in req.files){
+          let copy = false;
+          exists.forEach(val => {
+            if(req.files[key].name === val.src)  copy = true;
+          });
+          if(!copy) noCopies[key] = req.files[key];
+        }
+        const result = await getSongData(noCopies);
+
+        res.send(JSON.stringify(result));
+      } else {
+        const result = await getSongData(req.files);
+        
+        res.send(JSON.stringify(result));
+      }
+    } else {
+      res.status(400).end();
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).end()
+  }
+}
+
+export { getSong, uploadSong };

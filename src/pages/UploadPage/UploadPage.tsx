@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import UploadedSong from './UploadedSong';
+import { uploadSongs } from '../../api/songs';
 import './UploadPage.style.css';
 
-const UploadPage = () => {
+interface IUploadPageProps {
+  source: string,
+}
+
+const UploadPage = ({ source }: IUploadPageProps) => {
   const [uploadingSongs, setUploadingSongs] = useState<File[]>();
   const [songsLines, setSongsLines] = useState<JSX.Element[]>([]);
+  const [uploadStatus, setUploadStatus] = useState('');
 
   const onFilesLoading = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     const toUpload: File[] = [];
+
     if(files?.length !== undefined) {
       let elements = [];
+
       for(let i = 0; i < files.length; i++) {
         toUpload.push(files[i]);
         elements.push(
           <UploadedSong name={ files[i].name } pos={i} setUploading={setUploadingSongs} key={i} />
         );
       }
+
       setSongsLines(elements);
       setUploadingSongs(toUpload);
     }
   }
 
   useEffect(() => {
-    console.log(uploadingSongs);
-    
     if(uploadingSongs !== undefined) {
       const elements: JSX.Element[] = [];
       uploadingSongs.forEach((val, i) => {
@@ -36,12 +43,24 @@ const UploadPage = () => {
     }
   }, [uploadingSongs])
 
-  const onSubmitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmitForm = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const sendingData: FormData = new FormData();
+
+    uploadingSongs?.forEach((val, index) => {
+      sendingData.append('file' + index, val);
+    });
+
+    setUploadStatus('Waiting while music sending ...');
+    const result = await uploadSongs(source, sendingData);
+    setUploadStatus(`Uploaded ${result} songs`);
+    setUploadingSongs([]);
   }
 
   const resetData = () => {
     setUploadingSongs([]);
+    setUploadStatus('');
   }
 
   return (
@@ -53,6 +72,7 @@ const UploadPage = () => {
           <input type="reset" value="Reset" onClick={resetData} />
           <input type="submit" value="Upload" />
         </div>
+        <div>{ uploadStatus }</div>
       </form>
     </div>
   );
