@@ -29,6 +29,7 @@ const Menu = () => {
       <div className='sideMenuBox' style={ visible } >
         <Link to='/' >Main</Link>
         <Link to='/upload' >Upload</Link>
+        <Link to='/songs-list'>Songs List</Link>
       </div>
     </div>
   );

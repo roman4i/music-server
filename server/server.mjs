@@ -10,6 +10,7 @@ const port = 3001;
 
 app.use(cors());
 app.use(fileUpload());
+app.use(express.json());
 
 app.use('/musicList', musicListRoutes);
 app.use('/songs', songsRoutes);

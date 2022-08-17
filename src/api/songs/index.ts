@@ -28,4 +28,20 @@ const uploadSongs = async (source: string, files: FormData): Promise<string> => 
   }
 }
 
-export { getSongsList, uploadSongs };
+const deleteSong = async (source: string, id: string) => {
+  const resp = await fetch(source + '/songs/delete', {
+    method: 'DELETE',
+    body: JSON.stringify({id: id,}),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+
+  if(resp.status === 200) {
+    return 'ok';
+  } else {
+    return 'error';
+  }
+}
+
+export { getSongsList, uploadSongs, deleteSong };

@@ -3,6 +3,7 @@ import path from "path";
 import { client, musicList } from "../config/mongo-config.mjs";
 import { ObjectId } from "mongodb";
 import { parseBuffer } from "music-metadata";
+import fs from 'fs';
 
 // getSong request
 const getSong = async (req, res) => {
@@ -19,7 +20,8 @@ const getSong = async (req, res) => {
 // gets metadata from song and writes to the db
 const getSongData = async (files) => {
   let toWrite = [];
-  for(let key in files){
+
+  for (let key in files){
     const songData = await parseBuffer(files[key].data, 'audio/mpeg');
     toWrite.push(
       {
@@ -31,7 +33,7 @@ const getSongData = async (files) => {
     // musicPath + files[key].name
     files[key].mv(path.join(musicPath, files[key].name));
   }
-  if(toWrite.length > 0) {
+  if (toWrite.length > 0) {
     const res = await musicList.insertMany(toWrite);
     return res.insertedCount
   }
@@ -52,7 +54,7 @@ const uploadSong = async (req, res) => {
         $or: [...filesList]
       }).toArray();
 
-      if(exists.length > 0) {
+      if (exists.length > 0) {
         let noCopies = {};
         for(let key in req.files){
           let copy = false;
@@ -73,9 +75,24 @@ const uploadSong = async (req, res) => {
       res.status(400).end();
     }
   } catch (error) {
-    console.log(error.message);
     res.status(500).end()
   }
 }
 
-export { getSong, uploadSong };
+// delete song
+const deleteSong = async (req, res) => {
+  await client.connect();
+
+  const file = await musicList.findOne({_id: ObjectId(req.body.id)});
+
+  const result = await musicList.deleteOne({_id: ObjectId(req.body.id)});
+
+  if (result.deletedCount > 0) {
+    fs.rm(path.join(musicPath, file.src));
+    res.status(200).end();
+  } else {
+    res.status(400).end();
+  }
+}
+
+export { getSong, uploadSong, deleteSong };

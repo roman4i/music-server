@@ -9,6 +9,8 @@
   border: solid 1px;
   margin-bottom: 5px;
   padding: 0 10px;
+  overflow-y: scroll;
+  max-height: 70vh;
 }
 
 .uploadedSong {

@@ -9,6 +9,7 @@ import serverAdrrList from '../../store/server-adress';
 import { getSongsList } from '../../api/songs';
 import UploadPage from '../../pages/UploadPage/UploadPage';
 import MainPage from '../../pages/MainPage/MainPage';
+import SongsInfo from '../../pages/SongsInfo/SongsInfo';
 
 function App() {
     const startData: plData = {
@@ -51,6 +52,7 @@ function App() {
               } 
             />
             <Route path='upload' element={ <UploadPage source={contextData.adress} /> } />
+            <Route path='songs-list' element={ <SongsInfo adress={ contextData.adress } /> } />
           </Routes>
           </BrowserRouter>
       </Context.Provider>
