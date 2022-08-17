@@ -1,4 +1,4 @@
-import { client, musicList } from "../config/mongo-config.js";
+import { client, musicList } from "../config/mongo-config.mjs";
 
 const cleanCollection = async () => {
   await client.connect();

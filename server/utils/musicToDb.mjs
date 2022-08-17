@@ -1,8 +1,8 @@
-import { client, musicList } from "../config/mongo-config.js";
+import { client, musicList } from "../config/mongo-config.mjs";
 import fs from 'fs/promises';
 import { parseFile } from "music-metadata";
 import path from 'path';
-import { musicPath } from "../store/consts.js";
+import { musicPath } from "../store/consts.mjs";
 
 const putMusic = async () => {
   const allMusic = await fs.readdir(musicPath)

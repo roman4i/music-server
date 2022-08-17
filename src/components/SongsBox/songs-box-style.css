@@ -1,3 +1,5 @@
 .songsBox {
     padding: 8px 15px 8px;
+    height: calc(100vh - 250px);
+    overflow-y: scroll;
 }
