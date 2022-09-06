@@ -46,12 +46,15 @@ const deleteSong = async (source: string, id: string) => {
 
 const updateSong = async (source: string, newName: string, id: string) => {
   try {
-    const response = await fetch(source + '/song/update', {
+    const response = await fetch(source + '/songs/update', {
       method: 'PUT',
       body: JSON.stringify({
         name: newName,
         id: id,
       }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
     });
     if (response.status === 200) {
       return {

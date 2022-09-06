@@ -42,7 +42,7 @@ const SongLine = ({ name, id, address, setSongs }: ISongLineProps) => {
   }
 
   const onEdit = async ()  => {
-    if (editing) {
+    if (editing && (editingName !== songName)) {
       setStatus(waitingStatus);
       const result  = await  updateSong(address, editingName, id);
       if (result !== 'fail') {
