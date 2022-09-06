@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # music folder and music list
-/server/music
+/server/music/
 /server/store/music-list.txt

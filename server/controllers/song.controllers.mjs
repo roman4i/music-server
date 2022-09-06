@@ -31,7 +31,9 @@ const getSongData = async (files) => {
       }
     );
     // musicPath + files[key].name
-    files[key].mv(path.join(musicPath, files[key].name));
+    files[key].mv(path.join(musicPath, files[key].name), (err) => {
+      if (err) console.log(err.message);
+    });
   }
   if (toWrite.length > 0) {
     const res = await musicList.insertMany(toWrite);
@@ -88,7 +90,7 @@ const deleteSong = async (req, res) => {
   const result = await musicList.deleteOne({_id: ObjectId(req.body.id)});
 
   if (result.deletedCount > 0) {
-    fs.rm(path.join(musicPath, file.src));
+    fs.rm(path.join(musicPath, file.src), () => {});
     res.status(200).end();
   } else {
     res.status(400).end();

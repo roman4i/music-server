@@ -27,7 +27,7 @@ function App() {
       setPlayerData,
     },
     songsList: songsList,
-    adress: serverAdrrList.outer
+    adress: serverAdrrList.current,
   }
 
   // const main = (<>
