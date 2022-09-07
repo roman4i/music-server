@@ -1,3 +1,4 @@
+// put to 'outer' your server local address
 const serverAdrrList = {
     current: '',
     local: 'http://localhost:3001',

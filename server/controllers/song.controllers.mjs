@@ -26,7 +26,7 @@ const getSongData = async (files) => {
     toWrite.push(
       {
         src: files[key].name,
-        name: path.parse(files[key].name).base,
+        name: path.parse(files[key].name).name,
         duration: songData.format.duration
       }
     );

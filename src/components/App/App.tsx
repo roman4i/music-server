@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Head from '../Head/Head';
-import BodyBox from '../BodyBox/BodyBox';
 import Context from '../../store/context';
-import Player from '../Player/Player';
 import { plData, songsList } from '../../store/types';
 import serverAdrrList from '../../store/server-adress';
 import { getSongsList } from '../../api/songs';
@@ -27,13 +25,8 @@ function App() {
       setPlayerData,
     },
     songsList: songsList,
-    adress: serverAdrrList.current,
+    adress: serverAdrrList.local,
   }
-
-  // const main = (<>
-  //   <BodyBox songsLists={ songsList } />
-  //   <Player />
-  // </>);
 
   useEffect(() => {
     getSongsList(contextData.adress)
