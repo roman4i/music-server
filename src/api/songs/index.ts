@@ -44,4 +44,28 @@ const deleteSong = async (source: string, id: string) => {
   }
 }
 
-export { getSongsList, uploadSongs, deleteSong };
+const updateSong = async (source: string, newName: string, id: string) => {
+  try {
+    const response = await fetch(source + '/songs/update', {
+      method: 'PUT',
+      body: JSON.stringify({
+        name: newName,
+        id: id,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    if (response.status === 200) {
+      return {
+        name: newName,
+      };
+    } else {
+      return 'fail';
+    }
+  } catch (error) {
+    return 'fail';
+  }
+};
+
+export { getSongsList, uploadSongs, deleteSong, updateSong };

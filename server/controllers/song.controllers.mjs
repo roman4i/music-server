@@ -26,7 +26,7 @@ const getSongData = async (files) => {
     toWrite.push(
       {
         src: files[key].name,
-        name: path.parse(files[key].name).base,
+        name: path.parse(files[key].name).name,
         duration: songData.format.duration
       }
     );
@@ -97,4 +97,28 @@ const deleteSong = async (req, res) => {
   }
 }
 
-export { getSong, uploadSong, deleteSong };
+const updateSong = async (req, res) => {
+  try {
+    await client.connect();
+
+    const result = await musicList.updateOne({
+      _id: ObjectId(req.body.id),
+    }, { $set:{
+      name: req.body.name,
+    }});
+    console.log(result);
+    const count = result.modifiedCount;
+    if (count > 0) {
+      res.send(JSON.stringify({
+        name: req.body.name,
+      }));
+    } else {
+      res.status(404).end();
+    }
+  } catch (error) {
+    res.status(500).end();
+    console.log(error);
+  }
+};
+
+export { getSong, uploadSong, deleteSong, updateSong };

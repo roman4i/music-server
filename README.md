@@ -1,6 +1,6 @@
-# Music server
+## Music server
 
-This is the web player project. Put your music to server (to music folder) and listen it from different devices in your local network.
+This is the web player project. Put your music to server  and listen it from different devices in your local network.
 
 ## Content
 
@@ -40,20 +40,26 @@ For convenience added CORS (using server in development mode with different addr
 Files processing made by fs library.
 
 ### First start
-At first start you must run the `node server/utils/addMusicFolder.js` to create music folder (or create it by yourself in the server folder), next add your music to this folder. After that you can run the server.    
-Will be created music-list.txt with songs list. Here you can change song name.
+At first start you must run the `node server/utils/addMusicFolder.js` to create music folder (or create it by yourself in the server folder). Next make build. After that you can run the server.    
+
+### Database
+Server uses MongoDB to store the data (songs names and metadata). You need to have it on your computer for using the server.
 
 ## Front-end
 Front-end built with React and TypeScript    
-Songs list is getting by API from server, certain song is taken by API for single song (by id in songs list).
-Duration is getting from instance of audio player (HTML 5 audio player). Player controlling going through HTML 5 audio player API (getting element by id and calling needed metods)
+All data sending by API. 
+
+### Uploading
+Music files can be uploaded using uploading interface.   
+Press to menu icon, choose Upload item, next press button "Choose files" and select needed files. Next you will see the list of chosen files in area above "Choose files" button, here can be removed songs by pressing "Delete" button. Press "Reset" button to reset selection. To upload files press "Upload" button.
+
+### Songs List
+All songs can be seen at the Songs list page. To open it press menu and Songs List item. Here you can delete songs (by pressing "Delete" button) or edit name (press "Edit" button, edit name and press "Save" or "Cancel").
+
 
 ## ToDo
 
-- Remake song data getting metod. Be better to make data on back-end (getting by html5 audio need too much requests)
-- Fix displaying of big number of songs. Thewe are two ways for that:    
-    1. Display fixed number of songs and fix songs box size (must be adaptive with scrolling)
-    2. Add scrolling for songs box with adaptive height (render speed be lower)
+- Send a certain number of songs by one request (now server sends all songs) 
 
 ## Screenshots
 Interface on mobile device:  
